@@ -3,7 +3,7 @@
 import Link from "next/link";
 import Image from "next/image";
 import React, { useState } from "react";
-// 
+
 import NavLink from "./Link";
 
 export default function Navbar({ links }) {
@@ -25,7 +25,12 @@ export default function Navbar({ links }) {
           onMouseLeave={() => setShowDropdown(false)}
         >
           <Link href="/account">
-            <Image src={"/images/account-icon.png"} width={50} height={50} />
+            <Image
+              src={"/images/account-icon.png"}
+              width={50}
+              height={50}
+              alt="account-icon"
+            />
           </Link>
           {showDropdown && (
             <div
@@ -34,12 +39,12 @@ export default function Navbar({ links }) {
             >
               <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                 <li>
-                  <a
+                  <Link
                     href="/login"
-                    className="block text-center font-bold px-4 py-2 dark:hover:text-yellow-400 hover:duration-300 transition-colors"
+                    className="block text-lg text-center font-bold px-4 py-2 dark:hover:text-yellow-400 hover:duration-300 transition-colors"
                   >
                     Login
-                  </a>
+                  </Link>
                 </li>
               </ul>
             </div>
