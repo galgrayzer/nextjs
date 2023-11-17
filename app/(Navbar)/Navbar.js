@@ -2,12 +2,23 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 
+import isAuthServer from "@/middlewares/isAuthServer";
 import NavLink from "./Link";
 
 export default function Navbar({ links }) {
   const [showDropdown, setShowDropdown] = useState(false);
+  const [isAuth, setIsAuth] = useState(false);
+  useEffect(() => {
+    isAuthServer().then((isAuth) => {
+      if (isAuth) {
+        setIsAuth(true);
+      } else {
+        setIsAuth(false);
+      }
+    });
+  }, [showDropdown]);
   return (
     <>
       <nav className="flex justify-between items-center h-16 bg-[#0d0d0d]">
@@ -39,12 +50,21 @@ export default function Navbar({ links }) {
             >
               <ul className="py-2 text-sm text-gray-700 dark:text-gray-200">
                 <li>
-                  <Link
-                    href="/login"
-                    className="block text-lg text-center font-bold px-4 py-2 dark:hover:text-yellow-400 hover:duration-300 transition-colors"
-                  >
-                    Login
-                  </Link>
+                  {isAuth ? (
+                    <Link
+                      href="/logout"
+                      className="block text-lg text-center font-bold px-4 py-2 dark:hover:text-red-400 hover:duration-300 transition-colors"
+                    >
+                      Logout
+                    </Link>
+                  ) : (
+                    <Link
+                      href="/login"
+                      className="block text-lg text-center font-bold px-4 py-2 dark:hover:text-green-400 hover:duration-300 transition-colors"
+                    >
+                      Login
+                    </Link>
+                  )}
                 </li>
               </ul>
             </div>
