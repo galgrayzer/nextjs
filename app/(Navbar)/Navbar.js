@@ -1,13 +1,12 @@
 "use client";
 
 import Link from "next/link";
-import Image from "next/image";
 import React, { useState, useEffect } from "react";
 
 import isAuthServer from "@/middlewares/isAuthServer";
 import NavLink from "./Link";
 
-export default function Navbar({ links }) {
+export default function Navbar({ links, img }) {
   const [showDropdown, setShowDropdown] = useState(false);
   const [isAuth, setIsAuth] = useState(false);
   useEffect(() => {
@@ -36,12 +35,22 @@ export default function Navbar({ links }) {
           onMouseLeave={() => setShowDropdown(false)}
         >
           <Link href="/account">
-            <Image
-              src={"/images/account-icon.png"}
-              width={50}
-              height={50}
-              alt="account-icon"
-            />
+            {isAuth ? (
+              <img
+                src={img}
+                width={50}
+                height={50}
+                alt="account-icon"
+                className="rounded-full"
+              />
+            ) : (
+              <img
+                src={"/images/account-icon.png"}
+                width={50}
+                height={50}
+                alt="account-icon"
+              />
+            )}
           </Link>
           {showDropdown && (
             <div

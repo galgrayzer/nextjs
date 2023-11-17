@@ -1,7 +1,7 @@
 const mysql = require("mysql2");
 
 const pool = mysql.createPool({
-  host: "localhost",
+  host: "10.0.0.13",
   user: "root",
   password: "1234",
   database: "nextjs",

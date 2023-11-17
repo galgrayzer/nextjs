@@ -14,6 +14,6 @@ export const isAuth = () => {
     if (result.length === 0) {
       return false;
     }
-    return true;
+    return token;
   });
 };

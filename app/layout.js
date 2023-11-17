@@ -3,7 +3,7 @@ import Reload from "./(reload)/Reload";
 
 import "./globals.css";
 
-import Navbar from "./(Navbar)/Navbar";
+import PreNavbar from "./(Navbar)/PreNavbar";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -12,7 +12,7 @@ export default function RootLayout({ children }) {
     <html lang="en">
       <body className={inter.className}>
         <Reload />
-        <Navbar links={[]} />
+        <PreNavbar links={[]} />
         {children}
       </body>
     </html>

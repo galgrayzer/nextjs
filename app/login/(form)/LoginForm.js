@@ -5,6 +5,7 @@ import "./hover.css";
 
 export default function LoginForm({ handleSubmit }) {
   const [hover, setHover] = useState(false);
+  const [image, setImage] = useState("");
   return (
     <>
       <h1
@@ -32,6 +33,14 @@ export default function LoginForm({ handleSubmit }) {
               className="border-2 rounded-md p-2 mt-2 text-black"
               type="password"
             />
+            <label className="text-xl mt-4">Image</label>
+            <input
+              type="text"
+              className="border-2 rounded-md p-2 mt-2 text-black"
+              name="image"
+              value={image}
+              onChange={(e) => setImage(e.target.value)}
+            />
             <button
               type="submit"
               id="login-button"
@@ -52,6 +61,9 @@ export default function LoginForm({ handleSubmit }) {
                 Signup
               </a>
             </p>
+          </div>
+          <div className="absolute right-[15vw] top-1/3 -translate-y-1/3">
+            <img className="w-96 h-96 rounded-full" src={image} />
           </div>
         </div>
       </div>

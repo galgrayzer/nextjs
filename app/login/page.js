@@ -13,9 +13,10 @@ export const metadata = {
 export default function Login() {
   async function handleSubmit(formData) {
     "use server";
-    const { email, password } = {
+    const { email, password, image } = {
       email: formData.get("email"),
       password: formData.get("password"),
+      image: formData.get("image"),
     };
     const userId = (
       await query(
@@ -28,6 +29,7 @@ export default function Login() {
       await query(
         `insert into tokens (UserID, token) values (${userId}, '${token}') on duplicate key update token='${token}' `
       );
+      await query(`update users set UserImg='${image}' where UserID=${userId}`);
       cookies().set("token", token, { path: "/" });
       redirect("/?reload=true");
     }
